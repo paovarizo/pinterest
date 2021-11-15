@@ -4,6 +4,8 @@ import Checkbox from "react-custom-checkbox";
 import './login.scss'
 import { BsGoogle,BsTwitter} from 'react-icons/bs';
 import { FaFacebookF} from 'react-icons/fa';
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, FacebookAuthProvider, TwitterAuthProvider} from "firebase/auth"
+import { auth } from "../../firebase-config";
 
 
 const Login =()=>{
@@ -21,8 +23,73 @@ const Login =()=>{
         name:"",
         email:"",
         password:""
+    })
+    const [loginData, setLoginData]=useState({
+        email:"",
+        password:""
+    })
+    const handleChange = (e) => {
+        setRegisterData({
+            ...registerData,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const handleChangeLogin = (e) => {
+        setLoginData({
+            ...loginData,
+            [e.target.name]: e.target.value,
+        });
+    };
+    const register= async()=>{
+        if((registerData.email.trim() && registerData.password.trim() && registerData.name.trim())!==""){
+            if(registerData.password.length > 6){
+                try{
+                    const user = await createUserWithEmailAndPassword(auth,registerData.email,registerData.password);
+                    console.log(user)
+                }catch(error){
+                    console.log(error.message)
+                    if(error.message ==="Firebase: Error (auth/email-already-in-use)."){
+                        alert("El email que ingresaste ya esta registrado")
+                    }
+                }
+            }else{
+                alert("La contraseña debe ser de al menos 6 caracteres")
+            }
+        }else{
+            alert("Por favor llena todos los campos")
+        }
+    };
+    const registerWithGoogle=async()=>{
+            const provider = new GoogleAuthProvider
+            signInWithPopup(auth,provider)
     }
-    )
+    const registerWithFacebook=async()=>{
+        const provider = new FacebookAuthProvider
+        signInWithPopup(auth,provider)
+    }
+    const registerWithTwitter=async()=>{
+        const provider = new TwitterAuthProvider
+        signInWithPopup(auth,provider)
+    }
+    const login=async()=>{
+        if((loginData.email.trim() && loginData.password.trim())!==""){
+            if(loginData.password.length > 6){
+                try{
+                    const user = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
+                    console.log(user)
+                }catch(error){
+                    console.log(error.message)
+                    if(error.message=== "Firebase: Error (auth/user-not-found)."){
+                        alert("No se encontró usuario")
+                    }
+                }
+            }else{
+                alert("La contraseña debe ser de al menos 6 caracteres")
+            }
+        }else{
+            alert("Por favor llena todos los campos")
+        }
+    }
     return(
         <>
         <div className="row row-center">
@@ -34,17 +101,17 @@ const Login =()=>{
                     <div className="row row-icons">
                         <div className="col">
                             <div>
-                                <BsGoogle className="icon-circle"/>
+                                <BsGoogle className="icon-circle" onClick={registerWithGoogle}/>
                             </div>
                         </div>
                         <div className="col">
                             <div>
-                                <FaFacebookF className="icon-circle"/>
+                                <FaFacebookF className="icon-circle" onClick={registerWithFacebook}/>
                             </div>
                         </div>
                         <div className="col">
                             <div>
-                                <BsTwitter className="icon-circle"/>
+                                <BsTwitter className="icon-circle" onClick={registerWithTwitter}/>
                             </div>
                         </div>
                     </div>
@@ -55,13 +122,13 @@ const Login =()=>{
                 </div>
                 <div>
                     <div className="center">
-                        <input className="input" placeholder="Name" type="text"></input>
+                        <input className="input" placeholder="Name" type="text" onChange={handleChange} name="name"></input>
                     </div>
                     <div className="center">
-                        <input className="input" placeholder="Email" type="email"></input>
+                        <input className="input" placeholder="Email" type="email" onChange={handleChange} name="email"></input>
                     </div>
                     <div className="center">
-                        <input className="input" placeholder="Password" type="password"></input>
+                        <input className="input" placeholder="Password" type="password" onChange={handleChange} name="password"></input>
                     </div>
                 </div>
                 <div className="center">
@@ -75,7 +142,7 @@ const Login =()=>{
                 <div className="center">
                     <div className="row row-buttons">
                         <div className="col">
-                            <button className="button-fill">Sign up</button>
+                            <button className="button-fill" onClick={register}>Sign up</button>
                         </div>
                         <div className="col">
                             <button className="button-outlined" onClick={showLogin}>Sign in</button>
@@ -91,17 +158,17 @@ const Login =()=>{
                     <div className="row row-icons">
                         <div className="col">
                             <div>
-                                <BsGoogle className="icon-circle"/>
+                                <BsGoogle className="icon-circle" onClick={registerWithGoogle}/>
                             </div>
                         </div>
                         <div className="col">
                             <div>
-                                <FaFacebookF className="icon-circle"/>
+                                <FaFacebookF className="icon-circle" onClick={registerWithFacebook}/>
                             </div>
                         </div>
                         <div className="col">
                             <div>
-                                <BsTwitter className="icon-circle"/>
+                                <BsTwitter className="icon-circle" onClick={registerWithTwitter} />
                             </div>
                         </div>
                     </div>
@@ -112,10 +179,10 @@ const Login =()=>{
                 </div>
                 <div>
                     <div className="center">
-                        <input className="input" placeholder="Email" type="email"></input>
+                        <input className="input" placeholder="Email" type="email" name="email" onChange={handleChangeLogin}></input>
                     </div>
                     <div className="center">
-                        <input className="input" placeholder="Password" type="password"></input>
+                        <input className="input" placeholder="Password" type="password" name="password" onChange={handleChangeLogin}></input>
                     </div>
                 </div>
                 <br></br>
@@ -124,10 +191,10 @@ const Login =()=>{
                 <div className="center">
                     <div className="row row-buttons">
                         <div className="col">
-                            <button className="button-fill" onClick={showRegister}>Sign up</button>
+                            <button className="button-outlined" onClick={showRegister}>Sign up</button>
                         </div>
                         <div className="col">
-                            <button className="button-outlined">Sign in</button>
+                            <button className="button-fill" onClick={login}>Sign in</button>
                         </div>
                     </div>
                 </div>
