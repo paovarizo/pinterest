@@ -1,0 +1,98 @@
+@import '/public/styles/base';
+
+.row{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-family: $font-primary;
+}
+.row-center{
+    align-items: center;
+}
+.row-icons{
+    width: 300px;
+}
+.row-buttons{
+    width: 400px;
+}
+.col{
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.col-8{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+
+.col-4{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+.solid-red{
+    background-color: $color-primary;
+    height: 100vh;
+}
+.title{
+    color: $color-primary;
+    font-size: 45px;
+}
+.subtitle{
+    color: $color-gray;
+
+}
+.icon-circle{
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 10px;
+}
+.input{
+    height: 40px;
+    width: 400px;
+    border-radius: 10px;
+    border: 1px solid grey;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.checkbox-container{
+    width: 400px;
+}
+
+.button-fill{
+    width: 180px;
+    border:1px solid $color-primary;
+    color: $color-white;
+    height: 40px;
+    background-color: $color-primary;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.button-outlined{
+    width: 180px;
+    border:1px solid $color-primary;
+    color: $color-primary;
+    background-color: white;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
