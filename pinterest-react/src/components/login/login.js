@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as Icon from "react-icons/fi";
 import Checkbox from "react-custom-checkbox";
 import './login.scss'
@@ -6,9 +6,13 @@ import { BsGoogle,BsTwitter} from 'react-icons/bs';
 import { FaFacebookF} from 'react-icons/fa';
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, FacebookAuthProvider, TwitterAuthProvider} from "firebase/auth"
 import { auth } from "../../firebase-config";
+import { useNavigate } from "react-router-dom"
 
 
 const Login =()=>{
+    const navigate = useNavigate();
+    const [loginSuccess, setLoginSuccess]=useState(false)
+    const [registerSuccess, setRegisterSuccess]=useState(false)
     const [shLogin, setShLogin]=useState("none")
     const [shRegister, setShRegister]=useState("block")
     const showLogin=()=>{
@@ -40,6 +44,11 @@ const Login =()=>{
             [e.target.name]: e.target.value,
         });
     };
+    useEffect(() => {
+        if(loginSuccess || registerSuccess){
+            navigate('/')
+        }
+    }, [loginSuccess,registerSuccess]);
     const register= async()=>{
         if((registerData.email.trim() && registerData.password.trim() && registerData.name.trim())!==""){
             if(registerData.password.length > 6){
@@ -62,6 +71,11 @@ const Login =()=>{
     const registerWithGoogle=async()=>{
             const provider = new GoogleAuthProvider
             signInWithPopup(auth,provider)
+                .then((result)=>{
+                    navigate('/')
+                }).catch((error)=>{
+                    alert(error.message)
+                })
     }
     const registerWithFacebook=async()=>{
         const provider = new FacebookAuthProvider
@@ -77,7 +91,9 @@ const Login =()=>{
                 try{
                     const user = await signInWithEmailAndPassword(auth, loginData.email, loginData.password)
                     console.log(user)
+                    setLoginSuccess(true)
                 }catch(error){
+                    setLoginSuccess(false)
                     console.log(error.message)
                     if(error.message=== "Firebase: Error (auth/user-not-found)."){
                         alert("No se encontró usuario")
