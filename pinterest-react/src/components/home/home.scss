@@ -1,0 +1,89 @@
+@import '/public/styles/base';
+.img-logo{
+    width: 60px;
+    margin-left: 50px;
+}
+
+.row-home{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-family: $font-primary;
+    margin-top: 40px;
+}
+
+.col-10{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 83.3%;
+    flex: 0 0 83.3%;
+    max-width: 83.3%;
+}
+
+.col-2{
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 16.6%;
+    flex: 0 0 16.6%;
+    max-width: 16.6%;
+}
+
+.search-input{
+    width: 90%;
+    height: 50px;
+    border: 2px solid $color-gray;
+    border-radius: 20px;
+    font-size: 20px;
+    font-family: $font-primary;
+    padding-left: 30px;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+.send-button{
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+    border: none;
+    position: absolute;
+    left: 92%;
+    cursor: pointer;
+}
+
+.grid-img{
+    height: 300px;
+    border-radius: 40px;
+    margin-left: 20px;
+}
+.div-img{
+    margin-top: 50px;
+}
+
+.row-i{
+    z-index: 1;
+    display: -ms-inline-grid;
+    display: -moz-inline-grid;
+    display: inline-grid;
+}
+.logout-button{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    background-color: black;
+    color: white;
+    position: absolute;
+    left: 0;
+    margin-top: 80px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+.icon-logout{
+    width: 35px;
+    height: 45px;
+}

@@ -98,6 +98,9 @@ const Login =()=>{
                     if(error.message=== "Firebase: Error (auth/user-not-found)."){
                         alert("No se encontró usuario")
                     }
+                    if(error.message=== "Firebase: Error (auth/wrong-password)."){
+                        alert("Contraseña no valída")
+                    }
                 }
             }else{
                 alert("La contraseña debe ser de al menos 6 caracteres")
@@ -118,16 +121,6 @@ const Login =()=>{
                         <div className="col">
                             <div>
                                 <BsGoogle className="icon-circle" onClick={registerWithGoogle}/>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div>
-                                <FaFacebookF className="icon-circle" onClick={registerWithFacebook}/>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div>
-                                <BsTwitter className="icon-circle" onClick={registerWithTwitter}/>
                             </div>
                         </div>
                     </div>
@@ -175,16 +168,6 @@ const Login =()=>{
                         <div className="col">
                             <div>
                                 <BsGoogle className="icon-circle" onClick={registerWithGoogle}/>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div>
-                                <FaFacebookF className="icon-circle" onClick={registerWithFacebook}/>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div>
-                                <BsTwitter className="icon-circle" onClick={registerWithTwitter} />
                             </div>
                         </div>
                     </div>
