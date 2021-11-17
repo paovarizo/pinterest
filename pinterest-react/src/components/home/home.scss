@@ -1,4 +1,7 @@
 @import '/public/styles/base';
+html {
+    scroll-behavior: smooth;
+  }
 .img-logo{
     width: 60px;
     margin-left: 50px;
@@ -86,4 +89,10 @@
 .icon-logout{
     width: 35px;
     height: 45px;
+}
+.div-load{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
 }
