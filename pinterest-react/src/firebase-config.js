@@ -6,12 +6,12 @@ import {getAuth} from 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-  projectId: process.env.REAT_APP_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_APP_ID
+  apiKey: "AIzaSyBseNCiOqeT2VOqLviV3Wp9_lZE2uOH9jY",
+  authDomain: "pinterest-firebase-auth.firebaseapp.com",
+  projectId: "pinterest-firebase-auth",
+  storageBucket: "pinterest-firebase-auth.appspot.com",
+  messagingSenderId: "640633931150",
+  appId: "1:640633931150:web:3b216025a50319dc4190df"
 };
 
 // Initialize Firebase
