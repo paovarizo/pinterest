@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import * as Icon from "react-icons/fi";
-import Checkbox from "react-custom-checkbox";
 import './login.scss'
 import { BsGoogle,BsTwitter} from 'react-icons/bs';
 import { FaFacebookF} from 'react-icons/fa';
