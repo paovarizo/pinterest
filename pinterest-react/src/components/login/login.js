@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import * as Icon from "react-icons/fi";
 import './login.scss'
 import { BsGoogle,BsTwitter} from 'react-icons/bs';
-import { FaFacebookF} from 'react-icons/fa';
 import {createUserWithEmailAndPassword,signInWithEmailAndPassword,GoogleAuthProvider,signInWithPopup, FacebookAuthProvider, TwitterAuthProvider} from "firebase/auth"
 import { auth } from "../../firebase-config";
 import { useNavigate } from "react-router-dom"
